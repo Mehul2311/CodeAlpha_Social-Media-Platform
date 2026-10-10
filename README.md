@@ -1,79 +1,124 @@
-# चौपाल (Chaupal) - "अपनी बात, अपनों के साथ"
+# Chaupal 🪔
 
-A full-stack Indian mini social media web platform celebrating local culture, discussions, festivals, and authentic community connections across India.
+> *Apni baat, apno ke saath.*
 
----
+Chaupal is a mini social media web app where people can create a profile, share posts, comment, like and follow each other. The name comes from the *chaupal*, the open meeting place in Indian villages where everyone gathers to talk.
 
-## 🚀 Tech Stack
+I built this as part of my internship (Task 2: Social Media Platform).
 
-- **Frontend**: HTML5, CSS3 (Modular: base, layout, components, animations), Vanilla JavaScript (ES6+ Modules)
-- **Backend**: Node.js & Express.js
-- **Database**: SQLite with tables for users, posts, comments, likes, and followers with foreign keys & performance indexes
-- **Authentication**: bcrypt password hashing, JSON Web Tokens (JWT) / HTTP-only cookies
-- **Libraries & Assets**: GSAP for fluid entrance reveals and micro-interactions, Google Fonts (Poppins & Mukta/Hind), Font Awesome 6
+![Home feed](screenshots/feed.png)
 
----
+## Features
 
-## 📦 Setup & Installation
+- **User profiles:** signup, login, logout, bio, city, avatar, follower/following counts, edit profile
+- **Posts:** create, edit and delete posts with optional images
+- **Comments:** comment on any post and view the full thread
+- **Likes:** like/unlike posts with instant UI updates
+- **Follow system:** follow/unfollow users, followers and following lists, suggested people to follow
+- **Feed:** shows posts from the people you follow
+- **UI:** responsive layout, light/dark mode, smooth animations and Hindi + English greetings
+- **Seeded data:** sample users and posts so the app doesn't look empty on first run
 
-1. **Install dependencies**:
-   ```bash
-   npm install
-   ```
+## Tech Stack
 
-2. **Seed the database**:
-   Seeds 14 realistic Indian users from Delhi, Kochi, Pune, Kolkata, Ludhiana, Chennai, Hyderabad, Mumbai, Bangalore, Jaipur, Lucknow, Ahmedabad, Dehradun, and Guwahati, with 32+ posts, threaded comments, and interactions:
-   ```bash
-   npm run seed
-   ```
+| Layer | Technology |
+|-------|-----------|
+| Frontend | HTML5, CSS3, JavaScript (ES6+) |
+| Backend | Node.js, Express.js |
+| Database | SQLite (better-sqlite3) |
+| Auth | bcrypt, JWT |
+| Animations | CSS animations, GSAP, AOS |
+| Icons / Fonts | Font Awesome, Google Fonts (Poppins, Hind) |
 
-3. **Start the application**:
-   ```bash
-   npm start
-   # or for development:
-   npm run dev
-   ```
-   Open `http://localhost:3000` in your browser.
+## Database Design
 
----
+Five tables: `users`, `posts`, `comments`, `likes` and `followers`, linked with foreign keys. Deleting a post also removes its comments and likes.
 
-## 🌐 REST API Endpoints
+## Project Structure
 
-### Authentication (`/api/auth`)
-- `POST /api/auth/signup` - Register a new member (name, username, email, password, city, bio)
-- `POST /api/auth/login` - Authenticate member with username/email and password
-- `POST /api/auth/logout` - Clear session cookie
-- `GET /api/auth/me` - Retrieve current logged-in user profile & metrics
+```
+chaupal/
+├── public/          # frontend (html, css, js)
+├── routes/          # API route definitions
+├── controllers/     # request handling logic
+├── middleware/      # auth and validation
+├── db/              # database setup and queries
+├── seed/            # sample data script
+├── server.js
+└── package.json
+```
 
-### Users & Profiles (`/api/users`)
-- `GET /api/users/profile/:username` - Fetch user profile with stats and follow status
-- `PUT /api/users/profile` - Update profile (name, bio, city, avatar)
-- `GET /api/users/posts/:username` - Fetch posts by specific user
-- `GET /api/users/suggestions` - Get suggested community members to follow
-- `GET /api/users/:username/followers` - List of followers for user
-- `GET /api/users/:username/following` - List of members followed by user
+## Getting Started
 
-### Posts & Feed (`/api/posts`)
-- `GET /api/posts` - Retrieve feed (`type=following`, `type=all`, `type=trending`, `tag=ChaiTime`, `search=query`)
-- `GET /api/posts/:id` - Fetch single post details
-- `POST /api/posts` - Create new post (content, optional image URL)
-- `PUT /api/posts/:id` - Edit post (author only)
-- `DELETE /api/posts/:id` - Delete post (author only)
-- `POST /api/posts/:id/like` - Instant like / unlike toggle
+**Prerequisites:** Node.js 18 or above
 
-### Comments (`/api/comments`)
-- `GET /api/comments/post/:postId` - Get threaded comments hierarchy
-- `POST /api/comments/post/:postId` - Add top-level comment or nested reply (`parent_id`)
-- `DELETE /api/comments/:id` - Delete comment (author or post owner)
+```bash
+# clone the repo
+git clone https://github.com/Mehul2311/chaupal.git
+cd chaupal
 
-### Follow System (`/api/follow`)
-- `POST /api/follow/:userId` - Follow or unfollow user
+# install dependencies
+npm install
 
----
+# add sample users and posts
+npm run seed
 
-## 🇮🇳 Special Indian Identity Features
-- **Palette**: Saffron (`#FF9933`), Deep Green (`#138808`), Ashoka Navy (`#000080`), and warm Marigold
-- **Time Greetings**: Automatic detection of local time (Suprabhat 🌅, Namaste ☀️, Shubh Sandhya 🌇, Shubh Ratri 🌙)
-- **Indian Festival Banner**: Festive highlights (Diwali, Holi, Navratri, Azadi Ka Amrit Mahotsav)
-- **Timestamps & Numbers**: Indian Standard Time (IST) formatting and Indian numerical system (e.g. 1.2K, 1.5L)
-- **Interactive Micro-animations**: Heart and Diya particle bursts, button ripples, and card hover lift
+# start the server
+npm start
+```
+
+The app runs at `http://localhost:3000`.
+
+### Environment variables
+
+Create a `.env` file in the root folder:
+
+```
+PORT=3000
+JWT_SECRET=your_secret_key_here
+```
+
+## API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/auth/signup` | Register a new user |
+| POST | `/api/auth/login` | Login and get a token |
+| GET | `/api/users/:username` | Get a user's profile |
+| PUT | `/api/users/me` | Update your profile |
+| GET | `/api/posts` | Get your feed |
+| POST | `/api/posts` | Create a post |
+| PUT | `/api/posts/:id` | Edit a post |
+| DELETE | `/api/posts/:id` | Delete a post |
+| POST | `/api/posts/:id/like` | Like or unlike a post |
+| GET | `/api/posts/:id/comments` | Get comments on a post |
+| POST | `/api/posts/:id/comments` | Add a comment |
+| POST | `/api/follow/:userId` | Follow or unfollow a user |
+
+## Screenshots
+
+| Home | Profile | Mobile |
+|------|---------|--------|
+| ![Home](screenshots/home.png) | ![Profile](screenshots/profile.png) | ![Mobile](screenshots/mobile.png) |
+
+## What I Learned
+
+- Designing a relational schema for users, posts and followers
+- Securing routes with JWT and hashing passwords with bcrypt
+- Building a responsive layout with CSS Grid and Flexbox
+- Adding animations without hurting performance
+
+## Future Improvements
+
+- Direct messaging
+- Notifications
+- Image upload to cloud storage
+- Search for users and hashtags
+- Hindi/regional language toggle
+
+## Author
+
+**Mehul Sharma**
+Computer Science Student at SRM Institute of Science and Technology
+
+Made with ❤️ in India
