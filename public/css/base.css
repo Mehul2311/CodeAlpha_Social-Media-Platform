@@ -1,0 +1,199 @@
+/* ==========================================================================
+   Chaupal - Base Styles & Indian Color System
+   "Apni baat, apno ke saath"
+   ========================================================================== */
+
+:root {
+  /* Indian Inspired Palette */
+  --saffron-50: #FFF7ED;
+  --saffron-100: #FFEDD5;
+  --saffron-200: #FED7AA;
+  --saffron-400: #FB923C;
+  --saffron-500: #FF9933; /* National Saffron */
+  --saffron-600: #EA580C;
+  --saffron-700: #C2410C;
+
+  --marigold: #F59E0B;
+  --marigold-glow: rgba(245, 158, 11, 0.25);
+
+  --green-50: #F0FDF4;
+  --green-100: #DCFCE7;
+  --green-500: #138808; /* National Deep Green */
+  --green-600: #15803D;
+
+  --navy-50: #EEF2FF;
+  --navy-100: #E0E7FF;
+  --navy-500: #000080; /* Ashoka Navy Blue */
+  --navy-600: #1E1B4B;
+  --navy-700: #0F172A;
+
+  /* Theme Surfaces - Light Mode (Default) */
+  --bg-primary: #FDFBF7; /* Warm Indian paper/khadi hue */
+  --bg-surface: #FFFFFF;
+  --bg-elevated: #F9F6F0;
+  --bg-tertiary: #F1ECE1;
+
+  --text-primary: #1E293B;
+  --text-secondary: #64748B;
+  --text-muted: #94A3B8;
+  --text-inverted: #FFFFFF;
+
+  --border-subtle: #EBE5D8;
+  --border-focus: #FF9933;
+
+  --accent-primary: #FF9933;
+  --accent-hover: #EA580C;
+  --accent-green: #138808;
+  --accent-navy: #000080;
+
+  --shadow-sm: 0 1px 3px rgba(30, 41, 59, 0.05);
+  --shadow-md: 0 4px 12px -2px rgba(30, 41, 59, 0.08);
+  --shadow-lg: 0 12px 24px -4px rgba(30, 41, 59, 0.12);
+  --shadow-saffron: 0 8px 24px -4px rgba(255, 153, 51, 0.25);
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  --font-body: 'Poppins', system-ui, -apple-system, sans-serif;
+  --font-hindi: 'Mukta', 'Hind', 'Poppins', sans-serif;
+
+  --header-height: 64px;
+  --bottom-nav-height: 60px;
+}
+
+/* Dark Mode Overrides */
+[data-theme="dark"] {
+  --bg-primary: #0F1115;
+  --bg-surface: #181B20;
+  --bg-elevated: #22262E;
+  --bg-tertiary: #2D323C;
+
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --text-inverted: #0F1115;
+
+  --border-subtle: #2C323D;
+  --border-focus: #FB923C;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 12px 24px -4px rgba(0, 0, 0, 0.6);
+  --shadow-saffron: 0 8px 24px -4px rgba(255, 153, 51, 0.15);
+}
+
+/* CSS Reset & Defaults */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.5;
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Subtle Rangoli / Mandala Watermark Background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(255, 153, 51, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(19, 136, 8, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(0, 0, 128, 0.02) 0%, transparent 60%);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.25;
+}
+
+.hindi-text, .tagline {
+  font-family: var(--font-hindi);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  outline: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 0.65rem 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus, textarea:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px var(--marigold-glow);
+}
+
+/* Accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

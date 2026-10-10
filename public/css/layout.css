@@ -1,0 +1,380 @@
+/* ==========================================================================
+   Chaupal - Layout CSS (Mobile-first, 3-column Desktop)
+   Breakpoints: 360px, 768px, 1280px
+   ========================================================================== */
+
+/* Main App Shell */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+/* Header & Top Navigation */
+.main-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-subtle);
+  height: var(--header-height);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+[data-theme="dark"] .main-header {
+  background-color: rgba(24, 27, 32, 0.88);
+}
+
+.header-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.brand-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.brand-icon-wrapper {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--saffron-500) 0%, var(--saffron-600) 50%, var(--green-500) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.15rem;
+  box-shadow: 0 4px 10px rgba(255, 153, 51, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Tricolour Accent Line on top of header */
+.tricolour-stripe {
+  height: 3px;
+  width: 100%;
+  background: linear-gradient(90deg, #FF9933 0%, #FF9933 33.3%, #FFFFFF 33.3%, #FFFFFF 66.6%, #138808 66.6%, #138808 100%);
+}
+
+.brand-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-name {
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--saffron-600) 0%, var(--marigold) 50%, var(--green-600) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.1;
+}
+
+.brand-tagline {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  font-family: var(--font-hindi);
+  letter-spacing: 0.02em;
+}
+
+/* Header Middle - Search */
+.header-search {
+  flex: 1;
+  max-width: 380px;
+  position: relative;
+  display: none; /* Shown on tablet and desktop */
+}
+
+.header-search input {
+  width: 100%;
+  padding-left: 2.5rem;
+  padding-right: 1rem;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  font-size: 0.9rem;
+}
+
+.header-search .search-icon {
+  position: absolute;
+  left: 0.9rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+/* Header Actions */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.greeting-badge {
+  display: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--saffron-700);
+  background-color: var(--saffron-100);
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-full);
+  align-items: center;
+  gap: 0.4rem;
+}
+
+[data-theme="dark"] .greeting-badge {
+  background-color: rgba(255, 153, 51, 0.15);
+  color: var(--saffron-400);
+}
+
+.theme-toggle-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+}
+
+.theme-toggle-btn:hover {
+  color: var(--accent-primary);
+  background-color: var(--saffron-50);
+}
+
+[data-theme="dark"] .theme-toggle-btn:hover {
+  background-color: var(--bg-tertiary);
+}
+
+/* ==========================================================================
+   Main Content Layout (3-Column Desktop, 1-Column Mobile)
+   ========================================================================== */
+
+.main-content-wrapper {
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 5rem 1rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+/* Left Column - Navigation & User Profile Preview */
+.layout-left-sidebar {
+  display: none;
+}
+
+/* Middle Column - Feed Content */
+.layout-center-feed {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Right Column - Suggestions & Indian Trending */
+.layout-right-sidebar {
+  display: none;
+}
+
+/* Bottom Navigation Bar for Mobile */
+.mobile-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--bottom-nav-height);
+  background-color: var(--bg-surface);
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 100;
+  padding: 0 0.5rem;
+}
+
+.nav-item-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 54px;
+  height: 100%;
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  gap: 0.2rem;
+  position: relative;
+  touch-action: manipulation;
+}
+
+.nav-item-btn.active {
+  color: var(--saffron-600);
+  font-weight: 600;
+}
+
+.nav-item-btn.active::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 24px;
+  height: 3px;
+  border-radius: var(--radius-full);
+  background-color: var(--saffron-500);
+}
+
+.nav-item-btn i {
+  font-size: 1.25rem;
+}
+
+/* Floating Action Button (New Post on Mobile) */
+.mobile-fab-create {
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--saffron-500), var(--saffron-600));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(255, 153, 51, 0.4);
+  margin-top: -16px;
+  border: 3px solid var(--bg-surface);
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
+/* Tablet (768px and up) */
+@media (min-width: 768px) {
+  .header-search {
+    display: block;
+  }
+
+  .greeting-badge {
+    display: inline-flex;
+  }
+
+  .main-content-wrapper {
+    grid-template-columns: 240px 1fr;
+    padding-bottom: 2rem;
+  }
+
+  .layout-left-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    position: sticky;
+    top: calc(var(--header-height) + 1.25rem);
+    height: fit-content;
+  }
+
+  .mobile-bottom-nav {
+    display: none;
+  }
+}
+
+/* Desktop (1080px - 1280px and up) */
+@media (min-width: 1024px) {
+  .main-content-wrapper {
+    grid-template-columns: 260px 1fr 320px;
+    gap: 1.75rem;
+  }
+
+  .layout-right-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    position: sticky;
+    top: calc(var(--header-height) + 1.25rem);
+    height: fit-content;
+  }
+}
+
+/* App Footer */
+.app-footer {
+  margin-top: auto;
+  border-top: 1px solid var(--border-subtle);
+  background-color: var(--bg-surface);
+  padding: 1.5rem 1rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.footer-content {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-flag-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-full);
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  font-weight: 500;
+}
+
+.flag-stripes-mini {
+  display: inline-flex;
+  width: 18px;
+  height: 12px;
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.flag-stripes-mini span {
+  flex: 1;
+}
+
+.flag-stripes-mini .stripe-orange { background-color: #FF9933; }
+.flag-stripes-mini .stripe-white { 
+  background-color: #FFFFFF; 
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flag-stripes-mini .stripe-white::after {
+  content: '';
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background-color: #000080;
+}
+.flag-stripes-mini .stripe-green { background-color: #138808; }

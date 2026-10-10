@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chaupal - Apni baat, apno ke saath</title>
+    <meta name="description" content="Chaupal - Apni baat, apno ke saath. A mini social media platform celebrating Indian community, conversation, and culture." />
+    <meta property="og:title" content="Chaupal - Apni baat, apno ke saath" />
+    <meta property="og:description" content="Chaupal - Apni baat, apno ke saath. A mini social media platform celebrating Indian community, conversation, and culture." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Google Fonts: Poppins & Mukta / Hind for Hindi & Hinglish -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&family=Mukta:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <!-- Chaupal Modular CSS -->
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/layout.css" />
+    <link rel="stylesheet" href="/css/components.css" />
+    <link rel="stylesheet" href="/css/animations.css" />
+
+    <!-- GSAP for Smooth Fluid Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  </head>
+  <body>
+    <!-- App Shell -->
+    <div class="app-container">
+      <!-- Tricolour Accent Stripe -->
+      <div class="tricolour-stripe"></div>
+
+      <!-- Main Sticky Header -->
+      <header class="main-header">
+        <div class="header-inner">
+          <!-- Brand Logo & Tagline -->
+          <div class="brand-section">
+            <a href="/" class="brand-logo" id="header-brand-link">
+              <div class="brand-icon-wrapper">
+                <i class="fa-solid fa-fire-flame-curved"></i>
+              </div>
+              <div class="brand-title">
+                <span class="brand-name">चौपाल <span style="font-size: 0.8em; font-weight: 700; letter-spacing: -0.01em;">Chaupal</span></span>
+                <span class="brand-tagline">अपनी बात, अपनों के साथ</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- Search Input -->
+          <div class="header-search">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="search" id="header-search-input" placeholder="Chaupal pe dhoondhein... (#ChaiTime, shahar, dost)" autocomplete="off" />
+          </div>
+
+          <!-- Header Actions -->
+          <div class="header-actions">
+            <!-- Indian Time-of-Day Greeting Badge -->
+            <div class="greeting-badge" id="header-greeting">
+              <span>☀️</span>
+              <span class="hindi-text">नमस्ते</span>
+            </div>
+
+            <!-- Theme Toggle Button -->
+            <button class="theme-toggle-btn ripple-btn" id="theme-toggle-btn" aria-label="Toggle light or dark theme" title="Light / Dark mode">
+              <i class="fa-solid fa-moon" id="theme-icon"></i>
+            </button>
+
+            <!-- Auth Slot (Login CTA or Profile Badge) -->
+            <div id="header-auth-slot">
+              <button class="btn-primary" id="btn-open-auth-header">
+                <i class="fa-solid fa-right-to-bracket"></i> Login
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Layout 3-Column Wrapper -->
+      <main class="main-content-wrapper">
+        <!-- LEFT SIDEBAR (Desktop / Tablet) -->
+        <aside class="layout-left-sidebar">
+          <!-- User Profile Teaser / Guest CTA Card -->
+          <div id="sidebar-user-card"></div>
+
+          <!-- Quick Navigation Shortcuts -->
+          <nav class="c-card" style="padding: 0.75rem; display: flex; flex-direction: column; gap: 0.25rem;">
+            <a href="javascript:void(0)" class="nav-item-btn" id="side-nav-following" style="flex-direction: row; justify-content: flex-start; padding: 0.65rem 0.85rem; border-radius: var(--radius-md); gap: 0.85rem; font-size: 0.9rem; font-weight: 600;">
+              <i class="fa-solid fa-house-chimney" style="color: var(--saffron-500); width: 20px;"></i>
+              <span>Apno Ka Feed</span>
+            </a>
+            <a href="javascript:void(0)" class="nav-item-btn" id="side-nav-explore" style="flex-direction: row; justify-content: flex-start; padding: 0.65rem 0.85rem; border-radius: var(--radius-md); gap: 0.85rem; font-size: 0.9rem; font-weight: 500;">
+              <i class="fa-solid fa-compass" style="color: var(--green-600); width: 20px;"></i>
+              <span>Desh Videsh (Explore)</span>
+            </a>
+            <a href="javascript:void(0)" class="nav-item-btn" id="side-nav-trending" style="flex-direction: row; justify-content: flex-start; padding: 0.65rem 0.85rem; border-radius: var(--radius-md); gap: 0.85rem; font-size: 0.9rem; font-weight: 500;">
+              <i class="fa-solid fa-fire" style="color: var(--saffron-600); width: 20px;"></i>
+              <span>Charchit Mudde</span>
+            </a>
+          </nav>
+
+          <!-- Cultural Chaupal Quote Card -->
+          <div class="c-card" style="padding: 1rem; background: linear-gradient(135deg, rgba(255, 153, 51, 0.08) 0%, rgba(19, 136, 8, 0.05) 100%);">
+            <div style="font-size: 0.75rem; font-weight: 700; color: var(--saffron-700); text-transform: uppercase; margin-bottom: 0.4rem;">
+              <i class="fa-solid fa-quote-left"></i> Chaupal Vichar
+            </div>
+            <p style="font-size: 0.82rem; font-family: var(--font-hindi); line-height: 1.5; color: var(--text-primary); font-style: italic;">
+              “चौपाल सिर्फ एक जगह नहीं, एक भावना है — जहाँ बिना झिझक अपनी बात कही जा सके और अपनों को सुना जा सके।”
+            </p>
+          </div>
+        </aside>
+
+        <!-- CENTER COLUMN (Feed & Profile Views) -->
+        <section class="layout-center-feed">
+          <!-- Profile View (Initially hidden, revealed on profile navigation) -->
+          <div id="profile-view-container" style="display: none; flex-direction: column; gap: 1.25rem;"></div>
+
+          <!-- Main Feed View -->
+          <div id="feed-main-view" style="display: flex; flex-direction: column; gap: 1.25rem;">
+            <!-- Festival Banner Widget -->
+            <div id="festival-banner-container"></div>
+
+            <!-- Post Composer Card -->
+            <div class="c-card post-composer-card">
+              <div class="composer-header">
+                <img src="https://api.dicebear.com/7.x/bottts/svg?seed=guest" alt="User avatar" class="user-avatar avatar-md" id="composer-avatar" />
+                <div class="composer-input-area">
+                  <textarea id="composer-textarea" class="composer-textarea" placeholder="Chaupal pe kya chal raha hai? Apni baat likhein... (What's on your mind?)" rows="2" maxlength="1500"></textarea>
+                  
+                  <!-- Image preview if attached -->
+                  <div class="composer-image-preview" id="composer-preview-container">
+                    <img id="composer-preview-img" src="" alt="Post image preview" />
+                    <button class="btn-remove-preview" id="composer-remove-preview" title="Remove Image">
+                      <i class="fa-solid fa-xmark"></i>
+                    </button>
+                  </div>
+
+                  <!-- Enter Image URL Input -->
+                  <div class="composer-url-input-container" id="composer-url-container">
+                    <i class="fa-solid fa-link" style="color: var(--text-muted); font-size: 0.85rem;"></i>
+                    <input type="url" id="composer-image-url-input" placeholder="Image URL dalein (https://...)" />
+                    <button class="btn-outline-saffron" id="composer-apply-url-btn" style="padding: 0.3rem 0.75rem; font-size: 0.75rem;">Apply</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Composer Footer Toolbar -->
+              <div class="composer-footer">
+                <div class="composer-tools">
+                  <!-- File Upload Button -->
+                  <label for="composer-file-input" class="composer-tool-btn" title="Upload Image" style="cursor: pointer; margin: 0;">
+                    <i class="fa-regular fa-image"></i>
+                  </label>
+                  <input type="file" id="composer-file-input" accept="image/*" style="display: none;" />
+
+                  <!-- Image URL Button -->
+                  <button class="composer-tool-btn" id="composer-tool-image" title="Add Image URL">
+                    <i class="fa-solid fa-link"></i>
+                  </button>
+
+                  <span class="composer-char-count" id="composer-char-count">0/1500</span>
+                </div>
+
+                <button class="btn-primary" id="composer-submit-btn">
+                  <i class="fa-solid fa-paper-plane"></i> Chaupal me Baantain
+                </button>
+              </div>
+            </div>
+
+            <!-- Feed Filter Tabs -->
+            <div class="feed-tabs-container">
+              <button class="feed-tab-btn active" data-tab="following">
+                <i class="fa-solid fa-users"></i> Apno Ka Feed
+              </button>
+              <button class="feed-tab-btn" data-tab="all">
+                <i class="fa-solid fa-earth-asia"></i> Desh Videsh (Explore)
+              </button>
+              <button class="feed-tab-btn" data-tab="trending">
+                <i class="fa-solid fa-fire"></i> Charchit Mudde
+              </button>
+            </div>
+
+            <!-- Active Feed Section Title -->
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 0 0.25rem;">
+              <h2 id="feed-section-title" style="font-size: 1.1rem; font-weight: 700;">Apno Ka Feed</h2>
+            </div>
+
+            <!-- Posts List Container -->
+            <div id="feed-posts-container" style="display: flex; flex-direction: column; gap: 1.25rem;"></div>
+          </div>
+        </section>
+
+        <!-- RIGHT SIDEBAR (Desktop) -->
+        <aside class="layout-right-sidebar">
+          <!-- Suggested People to Follow -->
+          <div id="suggestions-panel-container"></div>
+
+          <!-- Trending Topics / Hashtags -->
+          <div id="trending-topics-container"></div>
+
+          <!-- Community Guidelines Teaser -->
+          <div class="c-card" style="padding: 1rem; font-size: 0.78rem; color: var(--text-secondary); line-height: 1.5;">
+            <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.35rem;">
+              🇮🇳 Chaupal Maryada (Community Spirit)
+            </div>
+            <p>Aapasi samman aur sauhard banaye rakhein. Har bhasha, sanskriti aur rajya ka aadar karein.</p>
+          </div>
+        </aside>
+      </main>
+
+      <!-- App Footer -->
+      <footer class="app-footer">
+        <div class="footer-content">
+          <div class="footer-flag-badge">
+            <span>Made with ❤️ in India</span>
+            <div class="flag-stripes-mini" title="Tricolour">
+              <span class="stripe-orange"></span>
+              <span class="stripe-white"></span>
+              <span class="stripe-green"></span>
+            </div>
+          </div>
+          <p style="font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-hindi);">
+            चौपाल — अपनी बात, अपनों के साथ · &copy; 2026 Chaupal Community
+          </p>
+        </div>
+      </footer>
+
+      <!-- MOBILE BOTTOM NAVIGATION (Phones) -->
+      <nav class="mobile-bottom-nav">
+        <button class="nav-item-btn active" id="mobile-nav-home">
+          <i class="fa-solid fa-house"></i>
+          <span>Home</span>
+        </button>
+        <button class="nav-item-btn" id="mobile-nav-explore">
+          <i class="fa-solid fa-compass"></i>
+          <span>Explore</span>
+        </button>
+        <button class="mobile-fab-create" id="mobile-nav-create" aria-label="Naya post likhein">
+          <i class="fa-solid fa-plus" style="font-size: 1.3rem;"></i>
+        </button>
+        <button class="nav-item-btn" id="mobile-nav-profile">
+          <i class="fa-regular fa-user"></i>
+          <span>Profile</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Toast Notifications Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- MODALS -->
+
+    <!-- 1. Auth Modal (Login / Signup) -->
+    <div class="modal-overlay" id="auth-modal">
+      <div class="modal-container">
+        <div class="modal-header">
+          <h3 class="modal-title" style="display: flex; align-items: center; gap: 0.5rem;">
+            <span>🪔</span> Chaupal me Swaagat Hai
+          </h3>
+          <button class="modal-close-btn" title="Close"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="modal-body">
+          <!-- Auth Tabs -->
+          <div class="feed-tabs-container" style="margin-bottom: 0.5rem;">
+            <button class="feed-tab-btn active" id="auth-tab-login">Login Karein</button>
+            <button class="feed-tab-btn" id="auth-tab-signup">Naya Account Banayein</button>
+          </div>
+
+          <!-- Login Form -->
+          <form id="auth-form-login" style="display: flex; flex-direction: column; gap: 1rem;">
+            <div>
+              <label for="login-identifier" style="font-size: 0.82rem; font-weight: 600; display: block; margin-bottom: 0.35rem;">Username ya Email</label>
+              <input type="text" id="login-identifier" required placeholder="e.g. aarav_sharma ya aarav@chaupal.in" style="width: 100%;" />
+            </div>
+            <div>
+              <label for="login-password" style="font-size: 0.82rem; font-weight: 600; display: block; margin-bottom: 0.35rem;">Password</label>
+              <input type="password" id="login-password" required placeholder="Apna password dalein (password123 for demo)" style="width: 100%;" />
+            </div>
+            <button type="submit" class="btn-primary" style="width: 100%; padding: 0.75rem; margin-top: 0.5rem;">
+              Chaupal me Pravesh Karein
+            </button>
+            <div style="font-size: 0.78rem; text-align: center; color: var(--text-muted);">
+              Demo password: <strong>password123</strong> sabhi accounts ke liye!
+            </div>
+          </form>
+
+          <!-- Signup Form -->
+          <form id="auth-form-signup" style="display: none; flex-direction: column; gap: 0.85rem;">
+            <div>
+              <label for="signup-name" style="font-size: 0.82rem; font-weight: 600; display: block; margin-bottom: 0.25rem;">Poora Naam (Full Name)</label>
+              <input type="text" id="signup-name" required placeholder="e.g. Rahul Sharma" style="width: 100%;" />
+            </div>
+            <div>
+              <label for="signup-username" style="font-size: 0.82rem; font-weight: 600; display: block; margin-bottom: 0.25rem;">Username (@handle)</label>
+              <input type="text" id="signup-username" required placeholder="e.g. rahul_sharma" style="width: 100%;" />
+            </div>
+            <div>
+              <label for="signup-email" style="font-size: 0.82rem; font-weight: 600; display: block; margin-bottom: 0.25rem;">Email Address</label>
+              <input type="email" id="signup-email" required placeholder="rahul@example.com" style="width: 100%;" />
+            </div>
+            <div>
+              <label for="signup-password" style="font-size: 0.82rem; font-weight: 600; display: block; margin-bottom: 0.25rem;">Password (kam se kam 6 akshar)</label>
+              <input type="password" id="signup-password" required minlength="6" placeholder="******" style="width: 100%;" />
+            </div>
+            <div>
+              <label for="signup-city" style="font-size: 0.82rem; font-weight: 600; display: block; margin-bottom: 0.25rem;">Shahar / Rajya (City, State)</label>
+              <input type="text" id="signup-city" placeholder="e.g. Jaipur, Rajasthan" style="width: 100%;" />
+            </div>
+            <div>
+              <label for="signup-bio" style="font-size: 0.82rem; font-weight: 600; display: block; margin-bottom: 0.25rem;">Chhota Bio</label>
+              <input type="text" id="signup-bio" placeholder="Chai premi, cricket lover, etc." style="width: 100%;" />
+            </div>
+            <button type="submit" class="btn-primary" style="width: 100%; padding: 0.75rem; margin-top: 0.5rem;">
+              Naya Sadasya Banein
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Edit Profile Modal -->
+    <div class="modal-overlay" id="edit-profile-modal">
+      <div class="modal-container">
+        <div class="modal-header">
+          <h3 class="modal-title">Apni Profile Edit Karein</h3>
+          <button class="modal-close-btn" title="Close"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="modal-body">
+          <form id="edit-profile-form" style="display: flex; flex-direction: column; gap: 1rem;">
+            <div>
+              <label for="edit-profile-name" style="font-size: 0.82rem; font-weight: 600; display: block; margin-bottom: 0.35rem;">Naam</label>
+              <input type="text" id="edit-profile-name" required style="width: 100%;" />
+            </div>
+            <div>
+              <label for="edit-profile-bio" style="font-size: 0.82rem; font-weight: 600; display: block; margin-bottom: 0.35rem;">Bio</label>
+              <textarea id="edit-profile-bio" rows="3" style="width: 100%;"></textarea>
+            </div>
+            <div>
+              <label for="edit-profile-city" style="font-size: 0.82rem; font-weight: 600; display: block; margin-bottom: 0.35rem;">Shahar / Rajya</label>
+              <input type="text" id="edit-profile-city" style="width: 100%;" />
+            </div>
+            <div>
+              <label for="edit-profile-avatar" style="font-size: 0.82rem; font-weight: 600; display: block; margin-bottom: 0.35rem;">Avatar Photo URL</label>
+              <input type="url" id="edit-profile-avatar" style="width: 100%;" />
+            </div>
+            <button type="submit" class="btn-primary" style="width: 100%; padding: 0.75rem; margin-top: 0.5rem;">
+              Profile Save Karein
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Edit Post Modal -->
+    <div class="modal-overlay" id="edit-post-modal">
+      <div class="modal-container">
+        <div class="modal-header">
+          <h3 class="modal-title">Post Edit Karein</h3>
+          <button class="modal-close-btn" title="Close"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="modal-body">
+          <form id="edit-post-form" style="display: flex; flex-direction: column; gap: 1rem;">
+            <input type="hidden" id="edit-post-id" />
+            <div>
+              <label for="edit-post-textarea" style="font-size: 0.82rem; font-weight: 600; display: block; margin-bottom: 0.35rem;">Post Content</label>
+              <textarea id="edit-post-textarea" rows="4" required style="width: 100%;"></textarea>
+            </div>
+            <div>
+              <label for="edit-post-image" style="font-size: 0.82rem; font-weight: 600; display: block; margin-bottom: 0.35rem;">Image URL (Optional)</label>
+              <input type="url" id="edit-post-image" style="width: 100%;" />
+            </div>
+            <button type="submit" class="btn-primary" style="width: 100%; padding: 0.75rem;">
+              Badlav Save Karein
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Follow List Modal (Followers / Following) -->
+    <div class="modal-overlay" id="follow-list-modal">
+      <div class="modal-container">
+        <div class="modal-header">
+          <h3 class="modal-title" id="follow-list-modal-title">Sadasya List</h3>
+          <button class="modal-close-btn" title="Close"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="modal-body" id="follow-list-modal-content">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Fullscreen Image Viewer Modal -->
+    <div class="modal-overlay" id="image-viewer-modal" style="background: rgba(0, 0, 0, 0.9);">
+      <div style="position: relative; max-width: 90vw; max-height: 90vh;">
+        <button class="modal-close-btn" style="position: absolute; top: -40px; right: 0; color: white; font-size: 1.5rem;" title="Close">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <img id="image-viewer-img" src="" style="max-width: 100%; max-height: 85vh; border-radius: var(--radius-md); object-fit: contain;" alt="Enlarged view" />
+      </div>
+    </div>
+
+    <!-- Main Module Script -->
+    <script type="module" src="/js/main.js"></script>
+  </body>
+</html>
